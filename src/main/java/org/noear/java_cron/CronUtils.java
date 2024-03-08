@@ -11,7 +11,7 @@ import java.util.TimeZone;
  * Cron 工具类
  *
  * @author noear
- * @since 1.1
+ * @since 1.0
  * */
 public class CronUtils {
     private static final Map<String, CronExpressionPlus> cached = new HashMap<>();

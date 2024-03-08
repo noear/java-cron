@@ -8,7 +8,7 @@ import java.util.Set;
  * CronExpression 加强版
  *
  * @author noear
- * @since 1.1
+ * @since 1.0
  */
 public class CronExpressionPlus extends CronExpression {
     public CronExpressionPlus(String cronExpression) throws ParseException {
