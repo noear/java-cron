@@ -30,7 +30,7 @@
         <connection>scm:git:git@github.com:noear/java-cron.git</connection>
         <developerConnection>scm:git:git@github.com:noear/java-cron.git</developerConnection>
         <url>https://github.com/noear/java-cron</url>
-        <tag>master</tag>
+        <tag>main</tag>
     </scm>
 
 
