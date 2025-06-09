@@ -70,12 +70,12 @@ public class CronUtils {
                 expr = cached.get(cron);
 
                 if (expr == null) {
-                    int tzIdx = cron.indexOf("+");
+                    int tzIdx = cron.lastIndexOf(" +");
                     if (tzIdx < 0) {
-                        tzIdx = cron.indexOf("-");
+                        tzIdx = cron.lastIndexOf(" -");
                     }
 
-                    if (tzIdx > 0) {
+                    if (tzIdx > 12) {
                         String tz = cron.substring(tzIdx);
                         cron = cron.substring(0, tzIdx - 1);
 
