@@ -70,24 +70,27 @@ public class CronUtils {
                 expr = cached.get(cron);
 
                 if (expr == null) {
-                    int tzIdx = cron.lastIndexOf(" +");
-                    if (tzIdx < 0) {
-                        tzIdx = cron.lastIndexOf(" -");
-                    }
-
-                    if (tzIdx > 12) {
-                        String tz = cron.substring(tzIdx);
-                        cron = cron.substring(0, tzIdx - 1);
-
-                        expr = new CronExpressionPlus(cron);
-                        expr.setTimeZone(TimeZone.getTimeZone(ZoneId.of(tz)));
-                    } else {
-                        expr = new CronExpressionPlus(cron);
-                    }
-
+                    expr = build0(cron);
                     cached.put(cron, expr);
                 }
             }
+        }
+
+        return expr;
+    }
+
+    private static CronExpressionPlus build0(String cron) throws ParseException {
+        int tzIdx = cron.lastIndexOf(' ');
+        String tzTmp = cron.substring(tzIdx + 1);
+
+        CronExpressionPlus expr;
+        if (tzTmp.startsWith("-") || tzTmp.startsWith("+")) {
+            cron = cron.substring(0, tzIdx);
+
+            expr = new CronExpressionPlus(cron);
+            expr.setTimeZone(TimeZone.getTimeZone(ZoneId.of(tzTmp)));
+        } else {
+            expr = new CronExpressionPlus(cron);
         }
 
         return expr;
